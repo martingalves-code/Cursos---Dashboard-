@@ -409,6 +409,7 @@
       overflow:auto;
     }
   }
+.mg-old,.mg-martin{display:inline-block;padding:5px 9px;border-radius:8px;font-size:12px;font-weight:700;white-space:nowrap}.mg-old{background:#e5eaf2;color:#435576}.mg-martin{background:#e7f4e8;color:#276a44}.s-card{min-width:135px}
 </style>
 </head>
 <body>
@@ -428,14 +429,16 @@
 
 <div id="tab-nice" class="tab-content active">
   <div class="summary-row">
-    <div class="s-card"><div class="s-num">8</div><div class="s-label">Ediciones Totales</div></div>
-    <div class="s-card"><div class="s-num">1807</div><div class="s-label">Cursantes Totales</div></div>
-    <div class="s-card"><div class="s-num">1</div><div class="s-label">Curso 2024</div></div>
-    <div class="s-card"><div class="s-num">5</div><div class="s-label">Cursos 2025</div></div>
-    <div class="s-card"><div class="s-num">2</div><div class="s-label">Cursos 2026</div></div>
-  </div>
+<div class="s-card"><div class="s-num">15</div><div class="s-label">Cursos / Ediciones</div></div>
+<div class="s-card"><div class="s-num">2.552</div><div class="s-label">Cursantes Totales</div></div>
+<div class="s-card"><div class="s-num">1.370</div><div class="s-label">Masculinos</div></div>
+<div class="s-card"><div class="s-num">1.182</div><div class="s-label">Femeninos</div></div>
+<div class="s-card"><div class="s-num">5</div><div class="s-label">Cursos 2024</div></div>
+<div class="s-card"><div class="s-num">5</div><div class="s-label">Cursos 2025</div></div>
+<div class="s-card"><div class="s-num">5</div><div class="s-label">Cursos 2026</div></div>
+</div>
 
-  <div class="search-panel">
+<div class="search-panel">
     <div class="search-top">
       <div>
         <div class="search-title">Buscador general de alumnos y nóminas</div>
@@ -443,7 +446,7 @@
       </div>
     </div>
     <input id="global-search" class="search-input" type="text" placeholder="Ejemplo: Acosta, 38721173, orden 10, nota 9.50..." oninput="runGlobalSearch()">
-    <div id="global-search-meta" class="search-meta">Escribí para buscar en las 8 ediciones NICE.</div>
+    <div id="global-search-meta" class="search-meta">Escribí para buscar en las nóminas individuales disponibles.</div>
     <div id="global-search-wrap" class="search-results-wrap">
       <div class="table-wrap" style="margin-bottom:0;border:none;border-radius:0;box-shadow:none;">
         <table>
@@ -466,114 +469,32 @@
     </div>
   </div>
 
-  <div class="section-title">NICE Policía · 2024–2026 · Nóminas completas</div>
+  <div class="section-title">NICE Policía · 2024–2026 · Consolidado de cursos</div>
   <div class="table-wrap">
     <table>
-      <thead>
-        <tr>
-          <th>Año</th>
-          <th>Mes</th>
-          <th>Período exacto</th>
-          <th>Tipo</th>
-          <th>Edición</th>
-          <th>Cursantes</th>
-          <th>Adjunto</th>
-          <th>Estado</th>
-          <th>Nómina completa</th>
-        </tr>
-      </thead>
+      <thead><tr><th>Año</th><th>Mes</th><th>Período / mes informado</th><th>Tipo</th><th>Curso / edición</th><th>Total</th><th>Masculinos</th><th>Femeninos</th><th>Gestión</th><th>Nómina</th></tr></thead>
       <tbody id="nice-course-rows">
-        <tr>
-          <td><span class="year-label">2024</span></td>
-          <td>Octubre</td>
-          <td>Orden de mérito · 09/10/2024</td>
-          <td><span class="badge badge-polic">Policía</span></td>
-          <td><span class="ed-badge">2ª Ed.</span></td>
-          <td><span class="num-cell">60</span></td>
-          <td class="folder-cell"><a class="file-link" href="RS-2024-459-GCABA-ISSP-anexo(1).pdf" download>IF-2024-38442677 · Orden de mérito</a></td>
-          <td><span class="status-ok">✓ Orden de mérito cargado</span></td>
-          <td><button class="btn-nomina" onclick="openNomina('nice2')">Ver nómina completa</button></td>
-        </tr>
-        <tr>
-          <td><span class="year-label">2025</span></td>
-          <td>Enero</td>
-          <td>06/01/2025 al 31/01/2025</td>
-          <td><span class="badge badge-polic">Policía</span></td>
-          <td><span class="ed-badge">3ª Ed.</span></td>
-          <td><span class="num-cell">45</span></td>
-          <td class="folder-cell"><a class="file-link" href="LISTA%20SABANA%20NICE%20ENERO%202025%20%289%29.xlsx" download>LISTA SABANA NICE ENERO 2025 (9).xlsx</a></td>
-          <td><span class="status-note">✓ Nómina completa cargada</span></td>
-          <td><button class="btn-nomina" onclick="openNomina('nice3')">Ver nómina completa</button></td>
-        </tr>
-        <tr>
-          <td><span class="year-label">2025</span></td>
-          <td>Julio</td>
-          <td>07/07/2025 al 04/08/2025</td>
-          <td><span class="badge badge-polic">Policía</span></td>
-          <td><span class="ed-badge">4ª Ed.</span></td>
-          <td><span class="num-cell">200</span></td>
-          <td class="folder-cell"><a class="file-link" href="NOMINA%20DE%20LOS%20CURSANTES-%20C-%20N.I.C.E.%20-04-%20%2807-07-25%20A%2004-08-25%29.xlsx" download>NÓMINA NICE 04</a></td>
-          <td><span class="status-ok">✓ Nómina completa cargada</span></td>
-          <td><button class="btn-nomina" onclick="openNomina('nice4')">Ver nómina completa</button></td>
-        </tr>
-        <tr>
-          <td><span class="year-label">2025</span></td>
-          <td>Agosto</td>
-          <td>04/08/2025 al 01/09/2025</td>
-          <td><span class="badge badge-polic">Policía</span></td>
-          <td><span class="ed-badge">5ª Ed.</span></td>
-          <td><span class="num-cell">200</span></td>
-          <td class="folder-cell"><a class="file-link" href="NOMINA%20-RECTIFIC%20CURSANTES-%20C-%20N.I.C.E.%20-05-%20%2804-08-25%20A%2001.09-25%29%20-INCORP%20-R%20%282%29%20%281%29.xlsx" download>NÓMINA NICE 05</a></td>
-          <td><span class="status-ok">✓ Nómina completa cargada</span></td>
-          <td><button class="btn-nomina" onclick="openNomina('nice5')">Ver nómina completa</button></td>
-        </tr>
-        <tr>
-          <td><span class="year-label">2025</span></td>
-          <td>Septiembre</td>
-          <td>08/09/2025 al 06/10/2025</td>
-          <td><span class="badge badge-polic">Policía</span></td>
-          <td><span class="ed-badge">6ª Ed.</span></td>
-          <td><span class="num-cell">200</span></td>
-          <td class="folder-cell"><a class="file-link" href="NOMINA%28S%29%20-CURSANTES-%20C-%20N.I.C.E.%20-06-%20%2808-09-25%20A%2006-10-25%29%20COM%20-01%20-02%20-03%20-04%20-R%20%282%29.xlsx" download>NÓMINA NICE 06</a></td>
-          <td><span class="status-ok">✓ Nómina completa cargada</span></td>
-          <td><button class="btn-nomina" onclick="openNomina('nice6')">Ver nómina completa</button></td>
-        </tr>
-        <tr>
-          <td><span class="year-label">2025</span></td>
-          <td>Noviembre</td>
-          <td>03/11/2025 al 28/11/2025</td>
-          <td><span class="badge badge-polic">Policía</span></td>
-          <td><span class="ed-badge">7ª Ed.</span></td>
-          <td><span class="num-cell">451</span></td>
-          <td class="folder-cell"><a class="file-link" href="LISTA%20SABANA%20FINAL%20%28NICE%20ED.%2007%29%20%281%29%20%284%29.xlsx" download>LISTA SABANA NICE 07</a></td>
-          <td><span class="status-ok">✓ Nómina completa cargada</span></td>
-          <td><button class="btn-nomina" onclick="openNomina('nice7')">Ver nómina completa</button></td>
-        </tr>
-        <tr>
-          <td><span class="year-label">2026</span></td>
-          <td>Febrero</td>
-          <td>02/02/2026 al 28/02/2026</td>
-          <td><span class="badge badge-polic">Policía</span></td>
-          <td><span class="ed-badge">8ª Ed.</span></td>
-          <td><span class="num-cell">450</span></td>
-          <td class="folder-cell"><a class="file-link" href="LISTA%20SABANA%20NICE%208%20%287%29.xlsx" download>LISTA SABANA NICE 08</a></td>
-          <td><span class="status-ok">✓ Nómina completa cargada</span></td>
-          <td><button class="btn-nomina" onclick="openNomina('nice8')">Ver nómina completa</button></td>
-        </tr>
-        <tr>
-          <td><span class="year-label">2026</span></td>
-          <td>Abril</td>
-          <td>13/04/2026 al 08/05/2026</td>
-          <td><span class="badge badge-polic">Policía</span></td>
-          <td><span class="ed-badge">9ª Ed.</span></td>
-          <td><span class="num-cell">201</span></td>
-          <td class="folder-cell"><a class="file-link" href="EDICION%209%20LISTA%20SABANA%20.xlsx" download>EDICIÓN 9 LISTA SABANA</a></td>
-          <td><span class="status-ok">✓ Nómina completa cargada</span></td>
-          <td><button class="btn-nomina" onclick="openNomina('nice9')">Ver nómina completa</button></td>
-        </tr>
-      </tbody>
+<tr><td><span class="year-label">2024</span></td><td>Mayo</td><td>Mayo 2024 (fechas exactas de cursada no informadas)</td><td><span class="badge badge-polic">Policía</span></td><td><span class="ed-badge">Mayo 2024</span></td><td class="num-cell">12</td><td class="num-cell">9</td><td class="num-cell">3</td><td><span class="mg-old">Gestión anterior</span></td><td><button class="btn-nomina" onclick="openNomina('ep2024may')">Ver nómina</button></td></tr>
+<tr><td><span class="year-label">2024</span></td><td>Julio</td><td>Julio 2024 (fechas exactas de cursada no informadas)</td><td><span class="badge badge-polic">Policía</span></td><td><span class="ed-badge">Julio 2024</span></td><td class="num-cell">38</td><td class="num-cell">36</td><td class="num-cell">2</td><td><span class="mg-old">Gestión anterior</span></td><td><button class="btn-nomina" onclick="openNomina('ep2024jul')">Ver nómina</button></td></tr>
+<tr><td><span class="year-label">2024</span></td><td>Octubre</td><td>09/09/2024 al 04/10/2024</td><td><span class="badge badge-polic">Policía</span></td><td><span class="ed-badge">2ª Ed.</span></td><td class="num-cell">60</td><td class="num-cell">47</td><td class="num-cell">13</td><td>—</td><td><button class="btn-nomina" onclick="openNomina('nice2')">Ver nómina</button></td></tr>
+<tr><td><span class="year-label">2024</span></td><td>Noviembre</td><td>Noviembre 2024 (fechas exactas de cursada no informadas)</td><td><span class="badge badge-polic">Policía</span></td><td><span class="ed-badge">Noviembre 2024</span></td><td class="num-cell">44</td><td class="num-cell">31</td><td class="num-cell">13</td><td><span class="mg-martin">Gestión Martín Galves</span></td><td><button class="btn-nomina" onclick="openNomina('ep2024nov')">Ver nómina</button></td></tr>
+<tr><td><span class="year-label">2024</span></td><td>Diciembre</td><td>Diciembre 2024 (fechas exactas de cursada no informadas)</td><td><span class="badge badge-polic">Policía</span></td><td><span class="ed-badge">Diciembre 2024</span></td><td class="num-cell">46</td><td class="num-cell">38</td><td class="num-cell">8</td><td><span class="mg-martin">Gestión Martín Galves</span></td><td><button class="btn-nomina" onclick="openNomina('ep2024dic')">Ver nómina</button></td></tr>
+<tr><td><span class="year-label">2025</span></td><td>Enero</td><td>06/01/2025 al 31/01/2025</td><td><span class="badge badge-polic">Policía</span></td><td><span class="ed-badge">3ª Ed.</span></td><td class="num-cell">45</td><td class="num-cell">12</td><td class="num-cell">33</td><td>—</td><td><button class="btn-nomina" onclick="openNomina('nice3')">Ver nómina</button></td></tr>
+<tr><td><span class="year-label">2025</span></td><td>Julio</td><td>07/07/2025 al 04/08/2025</td><td><span class="badge badge-polic">Policía</span></td><td><span class="ed-badge">4ª Ed.</span></td><td class="num-cell">200</td><td class="num-cell">114</td><td class="num-cell">86</td><td>—</td><td><button class="btn-nomina" onclick="openNomina('nice4')">Ver nómina</button></td></tr>
+<tr><td><span class="year-label">2025</span></td><td>Agosto</td><td>04/08/2025 al 01/09/2025</td><td><span class="badge badge-polic">Policía</span></td><td><span class="ed-badge">5ª Ed.</span></td><td class="num-cell">200</td><td class="num-cell">108</td><td class="num-cell">92</td><td>—</td><td><button class="btn-nomina" onclick="openNomina('nice5')">Ver nómina</button></td></tr>
+<tr><td><span class="year-label">2025</span></td><td>Septiembre</td><td>08/09/2025 al 06/10/2025</td><td><span class="badge badge-polic">Policía</span></td><td><span class="ed-badge">6ª Ed.</span></td><td class="num-cell">200</td><td class="num-cell">91</td><td class="num-cell">109</td><td>—</td><td><button class="btn-nomina" onclick="openNomina('nice6')">Ver nómina</button></td></tr>
+<tr><td><span class="year-label">2025</span></td><td>Noviembre</td><td>03/11/2025 al 28/11/2025</td><td><span class="badge badge-polic">Policía</span></td><td><span class="ed-badge">7ª Ed.</span></td><td class="num-cell">451</td><td class="num-cell">250</td><td class="num-cell">201</td><td>—</td><td><button class="btn-nomina" onclick="openNomina('nice7')">Ver nómina</button></td></tr>
+<tr><td><span class="year-label">2026</span></td><td>Febrero</td><td>02/02/2026 al 28/02/2026</td><td><span class="badge badge-polic">Policía</span></td><td><span class="ed-badge">8ª Ed.</span></td><td class="num-cell">450</td><td class="num-cell">203</td><td class="num-cell">247</td><td>—</td><td><button class="btn-nomina" onclick="openNomina('nice8')">Ver nómina</button></td></tr>
+<tr><td><span class="year-label">2026</span></td><td>Abril</td><td>13/04/2026 al 08/05/2026</td><td><span class="badge badge-polic">Policía</span></td><td><span class="ed-badge">9ª Ed.</span></td><td class="num-cell">201</td><td class="num-cell">105</td><td class="num-cell">96</td><td>—</td><td><button class="btn-nomina" onclick="openNomina('nice9')">Ver nómina</button></td></tr>
+<tr><td><span class="year-label">2026</span></td><td>Mayo</td><td>18/05/2026 al 13/06/2026</td><td><span class="badge badge-polic">Policía</span></td><td><span class="ed-badge">10ª Ed.</span></td><td class="num-cell">204</td><td class="num-cell">117</td><td class="num-cell">87</td><td>—</td><td><button class="btn-nomina" onclick="openNomina('nice10')">Ver nómina</button></td></tr>
+<tr><td><span class="year-label">2026</span></td><td>Junio</td><td>22/06/2026 al 17/07/2026</td><td><span class="badge badge-polic">Policía</span></td><td><span class="ed-badge">11ª Ed.</span></td><td class="num-cell">200</td><td class="num-cell">93</td><td class="num-cell">107</td><td>—</td><td><button class="btn-nomina" onclick="openNomina('nice11')">Ver nómina</button></td></tr>
+<tr><td><span class="year-label">2026</span></td><td>Agosto</td><td>24/08/2026 al 18/09/2026</td><td><span class="badge badge-polic">Policía</span></td><td><span class="ed-badge">Agosto 2026</span></td><td class="num-cell">201</td><td class="num-cell">116</td><td class="num-cell">85</td><td>—</td><td><span class="status-note">Nómina individual pendiente</span></td></tr>
+</tbody>
     </table>
   </div>
+<div class="section-title">Resumen anual NICE</div><div class="table-wrap"><table><thead><tr><th>Año</th><th>Cursos</th><th>Masculinos</th><th>Femeninos</th><th>Total</th></tr></thead><tbody id="nice-year-rows"><tr><td>2024</td><td>5</td><td>161</td><td>39</td><td><strong>200</strong></td></tr>
+<tr><td>2025</td><td>5</td><td>575</td><td>521</td><td><strong>1.096</strong></td></tr>
+<tr><td>2026</td><td>5</td><td>634</td><td>622</td><td><strong>1.256</strong></td></tr></tbody></table></div><div class="search-meta" style="margin-bottom:22px">Los totales de los 15 cursos están informados; el buscador de alumnos puede tener registros pendientes (3.ª, 7.ª y 12.ª ediciones). Para mayo, julio, noviembre y diciembre de 2024 se informa el mes, sin inventar fechas exactas de cursada.</div>
 </div>
 
 <div id="tab-ingreso" class="tab-content">
@@ -665,7 +586,7 @@
   </div>
 </div>
 
-<div class="footer">Departamento de Selección e Ingreso · Sistema de Gestión Interna · Datos actualizados al 24/04/2026</div>
+<div class="footer">Departamento de Selección e Ingreso · Consolidado NICE al 20/10/2026 · Datos de Google Sheets</div>
 
 <div class="modal-overlay" id="modal-overlay" onclick="closeModalOutside(event)">
   <div class="modal" onclick="event.stopPropagation()">
@@ -704,7 +625,8 @@
 </div>
 
 <script>
-let COURSES = [];
+const COURSE_BASE = [{"id":"ep2024may","year":2024,"month":"Mayo","title":"Curso de Estado Policial · Mayo 2024","short":"Mayo 2024","period":"Mayo 2024 (fechas exactas de cursada no informadas)","count":12,"male":9,"female":3,"management":"Anterior a la gestión de Martín Galves","status":"Verificado","hasRoster":true},{"id":"ep2024jul","year":2024,"month":"Julio","title":"Curso de Estado Policial · Julio 2024","short":"Julio 2024","period":"Julio 2024 (fechas exactas de cursada no informadas)","count":38,"male":36,"female":2,"management":"Anterior a la gestión de Martín Galves","status":"Verificado","hasRoster":true},{"id":"nice2","year":2024,"month":"Octubre","title":"NICE Policía · 2ª Edición","short":"2ª Ed.","period":"09/09/2024 al 04/10/2024","count":60,"male":47,"female":13,"management":"Sin clasificar","status":"Totales por sexo informados; sin desglose individual","hasRoster":true},{"id":"ep2024nov","year":2024,"month":"Noviembre","title":"Curso de Estado Policial · Noviembre 2024","short":"Noviembre 2024","period":"Noviembre 2024 (fechas exactas de cursada no informadas)","count":44,"male":31,"female":13,"management":"Gestión de Martín Galves","status":"Verificado","hasRoster":true},{"id":"ep2024dic","year":2024,"month":"Diciembre","title":"Curso de Estado Policial · Diciembre 2024","short":"Diciembre 2024","period":"Diciembre 2024 (fechas exactas de cursada no informadas)","count":46,"male":38,"female":8,"management":"Gestión de Martín Galves","status":"Verificado","hasRoster":true},{"id":"nice3","year":2025,"month":"Enero","title":"NICE Policía · 3ª Edición","short":"3ª Ed.","period":"06/01/2025 al 31/01/2025","count":45,"male":12,"female":33,"management":"Sin clasificar","status":"Total por sexo informado: 12 hombres y 33 mujeres; género individual confirmado en 9 de 45 registros","hasRoster":true},{"id":"nice4","year":2025,"month":"Julio","title":"NICE Policía · 4ª Edición","short":"4ª Ed.","period":"07/07/2025 al 04/08/2025","count":200,"male":114,"female":86,"management":"Sin clasificar","status":"Verificado desde nómina; cargado en Alumnos","hasRoster":true},{"id":"nice5","year":2025,"month":"Agosto","title":"NICE Policía · 5ª Edición","short":"5ª Ed.","period":"04/08/2025 al 01/09/2025","count":200,"male":108,"female":92,"management":"Sin clasificar","status":"Verificado desde nómina; cargado en Alumnos","hasRoster":true},{"id":"nice6","year":2025,"month":"Septiembre","title":"NICE Policía · 6ª Edición","short":"6ª Ed.","period":"08/09/2025 al 06/10/2025","count":200,"male":91,"female":109,"management":"Sin clasificar","status":"Verificado desde nómina; cargado en Alumnos","hasRoster":true},{"id":"nice7","year":2025,"month":"Noviembre","title":"NICE Policía · 7ª Edición","short":"7ª Ed.","period":"03/11/2025 al 28/11/2025","count":451,"male":250,"female":201,"management":"Sin clasificar","status":"Desglose verificado desde PDF rectificado; nómina individual pendiente de conciliación por DNI","hasRoster":true},{"id":"nice8","year":2026,"month":"Febrero","title":"NICE Policía · 8ª Edición","short":"8ª Ed.","period":"02/02/2026 al 28/02/2026","count":450,"male":203,"female":247,"management":"Sin clasificar","status":"Verificado desde nómina; cargado en Alumnos","hasRoster":true},{"id":"nice9","year":2026,"month":"Abril","title":"NICE Policía · 9ª Edición","short":"9ª Ed.","period":"13/04/2026 al 08/05/2026","count":201,"male":105,"female":96,"management":"Sin clasificar","status":"Verificado desde nómina modificada; cargado en Alumnos","hasRoster":true},{"id":"nice10","year":2026,"month":"Mayo","title":"NICE Policía · 10ª Edición","short":"10ª Ed.","period":"18/05/2026 al 13/06/2026","count":204,"male":117,"female":87,"management":"Sin clasificar","status":"Verificado desde Alumnos","hasRoster":true},{"id":"nice11","year":2026,"month":"Junio","title":"NICE Policía · 11ª Edición","short":"11ª Ed.","period":"22/06/2026 al 17/07/2026","count":200,"male":93,"female":107,"management":"Sin clasificar","status":"Verificado desde Alumnos","hasRoster":true},{"id":"nice12","year":2026,"month":"Agosto","title":"NICE Policía · 12ª Edición","short":"Agosto 2026","period":"24/08/2026 al 18/09/2026","count":201,"male":116,"female":85,"management":"Sin clasificar","status":"Verificado desde Excel aportado","hasRoster":false}];
+let COURSES = COURSE_BASE.map(c => ({...c}));
 let STUDENTS = [];
 
 const SHEET_ID = "15WzM4V0uXH4QfVmsSQ7fGIxhOF-H7Z1koV40SWrUpuk";
@@ -748,79 +670,66 @@ function periodoDesdeAlumno(a) {
   return a.period || "";
 }
 
+
 function construirCursosDesdeAlumnos() {
-  const mapa = new Map();
-
-  STUDENTS.forEach(a => {
-    if (!a.courseId) return;
-
-    if (!mapa.has(a.courseId)) {
-      mapa.set(a.courseId, {
-        id: a.courseId,
-        title: a.courseTitle || a.courseId,
-        short: a.courseShort || a.courseId,
-        period: periodoDesdeAlumno(a),
-        month: a.month || "",
-        year: a.year || "",
-        attachment: a.attachment || "",
-        attachmentHref: a.attachmentHref || a.attachment || "",
-        count: 0
-      });
-    }
-
-    const c = mapa.get(a.courseId);
-    c.count++;
-    if (!c.period && periodoDesdeAlumno(a)) c.period = periodoDesdeAlumno(a);
-    if (!c.month && a.month) c.month = a.month;
-    if (!c.year && a.year) c.year = a.year;
-    if (!c.title && a.courseTitle) c.title = a.courseTitle;
-    if (!c.short && a.courseShort) c.short = a.courseShort;
-  });
-
-  COURSES = Array.from(mapa.values()).sort((a, b) => {
-    const ay = Number(a.year) || 0;
-    const by = Number(b.year) || 0;
-    if (ay !== by) return ay - by;
-    const an = Number(String(a.id).replace(/\D/g, "")) || 0;
-    const bn = Number(String(b.id).replace(/\D/g, "")) || 0;
-    return an - bn;
-  });
+  // El total proviene del consolidado; la nómina individual sólo controla el botón de búsqueda.
+  const ids = new Set(STUDENTS.map(a=>a.courseId));
+  COURSES = COURSES.map(c=>({...c,hasRoster:ids.has(c.id)}));
 }
-
+function escapeHtml(v){return String(v??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+function gestionBadge(c){
+  if(String(c.management).startsWith('Anterior')) return '<span class="mg-old">Gestión anterior</span>';
+  if(String(c.management).startsWith('Gestión de')) return '<span class="mg-martin">Gestión Martín Galves</span>';
+  return '—';
+}
 function renderCursosNice() {
-  const tbody = document.getElementById("nice-course-rows");
-  if (!tbody) return;
-
-  tbody.innerHTML = COURSES.map(c => `
-    <tr>
-      <td><span class="year-label">${c.year || "—"}</span></td>
-      <td>${c.month || "—"}</td>
-      <td>${c.period || "—"}</td>
-      <td><span class="badge badge-polic">Policía</span></td>
-      <td><span class="ed-badge">${c.short || "—"}</span></td>
-      <td><span class="num-cell">${c.count || 0}</span></td>
-      <td class="folder-cell">${c.attachment ? `<a class="file-link" href="${c.attachmentHref}" download>${c.attachment}</a>` : `<span class="file-link">Google Sheets</span>`}</td>
-      <td><span class="status-ok">✓ Datos dinámicos</span></td>
-      <td><button class="btn-nomina" onclick="openNomina('${c.id}')">Ver nómina completa</button></td>
-    </tr>
-  `).join("");
+  const body=document.getElementById('nice-course-rows');
+  if(!body)return;
+  body.innerHTML=COURSES.map(c=>{
+    const boton=c.hasRoster ? '<button class="btn-nomina" onclick="openNomina(\''+escapeHtml(c.id)+'\')">Ver nómina</button>' : '<span class="status-note">Nómina individual pendiente</span>';
+    return '<tr><td><span class="year-label">'+c.year+'</span></td><td>'+escapeHtml(c.month)+'</td><td>'+escapeHtml(c.period)+'</td><td><span class="badge badge-polic">Policía</span></td><td><span class="ed-badge">'+escapeHtml(c.short)+'</span></td><td class="num-cell">'+c.count+'</td><td class="num-cell">'+c.male+'</td><td class="num-cell">'+c.female+'</td><td>'+gestionBadge(c)+'</td><td>'+boton+'</td></tr>';
+  }).join('');
 }
-
-function actualizarResumenNice() {
-  const cards = document.querySelectorAll("#tab-nice .summary-row .s-card .s-num");
-  const totalAlumnos = STUDENTS.length;
-  const totalCursos = COURSES.length;
-  const cursos2024 = COURSES.filter(c => String(c.year) === "2024").length;
-  const cursos2025 = COURSES.filter(c => String(c.year) === "2025").length;
-  const cursos2026 = COURSES.filter(c => String(c.year) === "2026").length;
-
-  if (cards[0]) cards[0].textContent = totalCursos;
-  if (cards[1]) cards[1].textContent = totalAlumnos;
-  if (cards[2]) cards[2].textContent = cursos2024;
-  if (cards[3]) cards[3].textContent = cursos2025;
-  if (cards[4]) cards[4].textContent = cursos2026;
+function actualizarResumenNice(){
+  const cards=document.querySelectorAll('#tab-nice .summary-row .s-card .s-num');
+  const sum=k=>COURSES.reduce((n,c)=>n+Number(c[k]||0),0);
+  const values=[COURSES.length,sum('count'),sum('male'),sum('female'),...[2024,2025,2026].map(y=>COURSES.filter(c=>Number(c.year)===y).length)];
+  values.forEach((v,i)=>{if(cards[i]) cards[i].textContent=v.toLocaleString('es-AR');});
+  const tbody=document.getElementById('nice-year-rows');
+  if(tbody)tbody.innerHTML=[...new Set(COURSES.map(c=>Number(c.year)))].sort((a,b)=>a-b).map(y=>{
+    const cs=COURSES.filter(c=>Number(c.year)===y), total=k=>cs.reduce((n,c)=>n+Number(c[k]||0),0);
+    return '<tr><td>'+y+'</td><td>'+cs.length+'</td><td>'+total('male')+'</td><td>'+total('female')+'</td><td><strong>'+total('count').toLocaleString('es-AR')+'</strong></td></tr>';
+  }).join('');
 }
-
+function cargarDistribucion(){
+  return new Promise((resolve,reject)=>{
+    window.google=window.google||{};window.google.visualization=window.google.visualization||{};window.google.visualization.Query=window.google.visualization.Query||{};
+    window.google.visualization.Query.setResponse=response=>{
+      try{
+        if(!response||!response.table)throw Error('Sin consolidado');
+        const cols=response.table.cols.map(c=>normalizarHeader(c.label));
+        const get=(row,key)=>{const i=cols.indexOf(key),cell=i>=0?row.c?.[i]:null;return cell?String(cell.f??cell.v??'').trim():'';};
+        const base=new Map(COURSE_BASE.map(c=>[c.id,c]));
+        const news=(response.table.rows||[]).filter(r=>get(r,'ID curso')).map(r=>{
+          const id=get(r,'ID curso'),p=base.get(id)||{};
+          return {...p,id,year:Number(get(r,'Año')),month:get(r,'Mes'),
+            title:get(r,'Curso / edición')||p.title||id,short:p.short||get(r,'Mes'),period:p.period||get(r,'Mes')+' '+get(r,'Año'),
+            count:Number(get(r,'Total')),male:Number(get(r,'Hombres')),female:Number(get(r,'Mujeres')),
+            management:get(r,'Gestión'),status:get(r,'Estado de los datos'),hasRoster:p.hasRoster||false};
+        });
+        if(news.length<15||news.some(c=>!c.count||c.count!==c.male+c.female))throw Error('Consolidado incompleto');
+        const ms=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+        COURSES=news.sort((a,b)=>a.year-b.year||ms.indexOf(a.month)-ms.indexOf(b.month));
+        construirCursosDesdeAlumnos();renderCursosNice();actualizarResumenNice();resolve(COURSES);
+      }catch(ex){reject(ex);}
+    };
+    const script=document.createElement('script');
+    script.src='https://docs.google.com/spreadsheets/d/'+SHEET_ID+'/gviz/tq?tqx=out:json&gid=1702526203&t='+Date.now();
+    script.onerror=()=>reject(Error('No se pudo cargar consolidado'));
+    script.onload=()=>script.remove();
+    document.body.appendChild(script);
+  }).catch(error=>{console.warn('Se conserva consolidado de respaldo:',error);return COURSES;});
+}
 function cargarAlumnos() {
   return new Promise((resolve, reject) => {
     window.google = window.google || {};
@@ -892,7 +801,7 @@ function cargarAlumnos() {
         actualizarResumenNice();
 
         const meta = document.getElementById("global-search-meta");
-        if (meta) meta.textContent = "Alumnos cargados desde Google Sheets: " + STUDENTS.length + ". Escribí para buscar.";
+        if (meta) meta.textContent = "Nóminas individuales disponibles: " + STUDENTS.length.toLocaleString("es-AR") + " registros. Los totales por curso se informan por separado.";
 
         console.log("Alumnos cargados desde Google Sheets:", STUDENTS.length);
         console.log("Cursos dinámicos:", COURSES.length);
@@ -914,14 +823,17 @@ function cargarAlumnos() {
     document.body.appendChild(script);
   }).catch(error => {
     console.error("Error cargando alumnos:", error);
-    alert("No se pudieron cargar los alumnos desde Google Sheets. Revisá permisos o probá subir este HTML a GitHub Pages.");
+    const meta = document.getElementById("global-search-meta"); if(meta) meta.textContent = "Buscador individual temporalmente no disponible; el consolidado sigue visible.";
   });
 }
 
-document.addEventListener("DOMContentLoaded", cargarAlumnos);
-
-// Actualización automática cada 30 segundos.
-setInterval(cargarAlumnos, 30000);
+let recargando=false;
+async function refrescarDatos(){
+  if(recargando)return;recargando=true;
+  try{await cargarAlumnos();await cargarDistribucion();}finally{recargando=false;}
+}
+document.addEventListener('DOMContentLoaded',()=>{renderCursosNice();actualizarResumenNice();refrescarDatos();});
+setInterval(refrescarDatos,60000);
 let activeCourseId = null;
 
 function switchTab(tab, button) {
@@ -945,8 +857,9 @@ function courseById(id) {
 }
 
 function openNomina(id) {
-  activeCourseId = id;
   const course = courseById(id);
+  if (!course || !course.hasRoster) return;
+  activeCourseId = id;
   const chips = [
     `<span class="modal-chip"><strong>Edición</strong>: ${course.short}</span>`,
     `<span class="modal-chip"><strong>Período</strong>: ${course.period}</span>`,
@@ -954,7 +867,7 @@ function openNomina(id) {
     `<span class="modal-chip"><strong>Adjunto</strong>: ${course.attachment}</span>`
   ];
   document.getElementById('modal-title').textContent = course.title;
-  document.getElementById('modal-subtitle').textContent = 'Buscador interno de la nómina completa';
+  document.getElementById('modal-subtitle').textContent = 'Registros individuales disponibles';
   document.getElementById('modal-chips').innerHTML = chips.join('');
   document.getElementById('modal-search').value = '';
   renderModalTable();
@@ -1003,7 +916,7 @@ function runGlobalSearch() {
 
   if (!query) {
     wrap.classList.remove('visible');
-    meta.textContent = 'Escribí para buscar en las 8 ediciones NICE.';
+    meta.textContent = 'Escribí para buscar en las nóminas individuales disponibles.';
     tbody.innerHTML = '';
     return;
   }
