@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#f6f3fb"/>
+<title>ISSP · Dashboard automático de cursos e incorporaciones</title>
+<style>
+:root{--ink:#252538;--muted:#6d697d;--accent:#6952aa;--accent-soft:#eee8fb;--border:#e5e0ef;--paper:#fff;--bg:#faf8fd;--green:#247954}
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif;background:linear-gradient(160deg,#faf4fb,#f8fbff 52%,#f9f8fc);color:var(--ink)}
+header,.wrap{max-width:1230px;margin:auto;padding:22px 22px 8px}
+header{padding-top:36px}.eyebrow{text-transform:uppercase;letter-spacing:.17em;font-size:12px;color:var(--accent);font-weight:750}h1{font-size:clamp(26px,4vw,42px);line-height:1.12;letter-spacing:-.04em;margin:9px 0 12px}h2{font-size:20px;letter-spacing:-.025em;margin:0 0 12px}p{margin:0;color:var(--muted)}.headerline{display:flex;gap:14px;align-items:flex-end;justify-content:space-between;flex-wrap:wrap}
+nav{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0}.tab{background:#fff;color:var(--muted);font:inherit;font-weight:700;padding:10px 16px;border:1px solid var(--border);border-radius:10px;cursor:pointer}.tab.active{background:var(--accent);border-color:var(--accent);color:white}
+.status{font-size:12px;display:flex;gap:8px;align-items:center;color:var(--muted)}.dot{width:8px;height:8px;background:#c6a157;border-radius:50%;display:inline-block}.status.live .dot{background:var(--green)}.status.error .dot{background:#bb784b}
+.panel{display:none}.panel.active{display:block}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(154px,1fr));gap:12px;margin:8px 0 24px}
+.card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:17px 18px;min-height:105px;box-shadow:0 5px 18px #4130630b}.card b{font-size:29px;letter-spacing:-.05em;display:block;font-variant-numeric:tabular-nums}.card small{color:var(--muted);font-size:12px;display:block;margin-top:4px}
+.section{background:var(--paper);border:1px solid var(--border);border-radius:15px;padding:20px 20px 10px;margin:18px 0;box-shadow:0 5px 18px #41306309}
+.row{display:flex;gap:12px;justify-content:space-between;flex-wrap:wrap;align-items:center}.note{font-size:13px;color:var(--muted);margin:5px 0 18px}.notice{padding:12px 15px;border:1px solid #e8d9b2;border-radius:12px;background:#fff9e9;color:#7c6137;font-size:13px;margin:14px 0}
+.table-wrap{width:100%;overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:700px;font-size:13px}th{padding:10px 12px;text-align:left;color:#6b5d86;background:#f3eff9;font-size:11px;text-transform:uppercase;letter-spacing:.06em}td{padding:11px 12px;border-bottom:1px solid #edeaf1}tr:last-child td{border-bottom:0}td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}th.num{text-align:right}.pill{display:inline-block;border-radius:8px;background:#efedf7;padding:3px 8px;white-space:nowrap;font-weight:700;color:#665588}.pending{background:#fff7e5;color:#946d2a}.pill.previous{background:#eaf0f6;color:#5e7289}.pill.current{background:#e5f5eb;color:#3b7859}
+.table-actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}select{font:inherit;padding:8px 12px;border:1px solid var(--border);border-radius:8px;background:white;color:var(--ink)}
+.empty{color:var(--muted);font-style:italic;padding:18px}footer{max-width:1230px;margin:auto;padding:24px 22px 45px;color:var(--muted);font-size:12px}
+a{color:var(--accent)}@media(max-width:680px){header,.wrap{padding:17px 13px 5px}.section{padding:15px 10px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.card{padding:14px 12px}.card b{font-size:25px}}
+</style>
+</head>
+<body>
+<header>
+<div class="eyebrow">Instituto Superior de Seguridad Pública · Selección e Ingreso</div>
+<div class="headerline"><div><h1>Dashboard de cursos<br/>e incorporaciones</h1><p>Consolidado institucional · 2024 en adelante</p></div><div class="status" id="sync"><span class="dot"></span><span>Preparando sincronización</span></div></div>
+<nav><button class="tab active" data-tab="nice">NICE / Estado Policial</button><button class="tab" data-tab="ingresos">Cadetes · Bomberos · Penitenciario</button></nav>
+</header>
+<main class="wrap">
+<section id="nice" class="panel active">
+<div class="cards" id="nice-cards"></div>
+<div class="section"><div class="row"><h2>Detalle de cursos</h2><div class="table-actions"><label for="nice-year">Año</label><select id="nice-year"><option value="">Todos</option></select></div></div>
+<p class="note">Incluye las ediciones numeradas de NICE y los cursos de Estado Policial registrados por mes.</p>
+<div class="table-wrap"><table><thead><tr><th>Año</th><th>Mes</th><th>Curso / edición</th><th>Período</th><th class="num">Masculinos</th><th class="num">Femeninos</th><th class="num">Total</th></tr></thead><tbody id="nice-rows"></tbody></table></div></div>
+<div class="section"><h2>Resumen por año</h2><div class="table-wrap"><table><thead><tr><th>Año</th><th class="num">Cursos</th><th class="num">Masculinos</th><th class="num">Femeninos</th><th class="num">Total</th></tr></thead><tbody id="nice-years"></tbody></table></div></div>
+</section>
+<section id="ingresos" class="panel">
+<div class="cards" id="ingreso-cards"></div>
+<div class="notice">Los totales de las promociones 2026 incluyen los registros en rojo identificados en las nóminas. La situación de baja o ausencia se informa por separado. La 8.ª promoción de Bomberos (2024) permanece pendiente de nómina y no suma al total.</div>
+<div class="section"><div class="row"><h2>Incorporaciones por fuerza</h2><div class="table-actions"><label for="ingreso-year">Año</label><select id="ingreso-year"><option value="">Todos</option></select></div></div>
+<div class="table-wrap"><table><thead><tr><th>Año</th><th>Fuerza</th><th>Promoción</th><th>Período</th><th class="num">Masculinos</th><th class="num">Femeninos</th><th class="num">Registros en rojo</th><th class="num">Total</th></tr></thead><tbody id="ingreso-rows"></tbody></table></div></div>
+<div class="section"><h2>Resumen por fuerza</h2><div class="table-wrap"><table><thead><tr><th>Fuerza</th><th class="num">Promociones con datos</th><th class="num">Masculinos</th><th class="num">Femeninos</th><th class="num">Total</th></tr></thead><tbody id="ingreso-types"></tbody></table></div></div>
+</section>
+<p class="note" id="data-note">La web consulta únicamente las pestañas de totales; no publica nombres, DNI ni correos electrónicos de las nóminas.</p>
+</main>
+<footer><a href="index.html">Ver sitio anterior</a> · <a href="https://docs.google.com/spreadsheets/d/15WzM4V0uXH4QfVmsSQ7fGIxhOF-H7Z1koV40SWrUpuk/edit">Fuente de datos: Google Sheets</a> · Consultas automáticas al abrir y cada 60 segundos</footer>
+<script>
+
+const SHEET="15WzM4V0uXH4QfVmsSQ7fGIxhOF-H7Z1koV40SWrUpuk";
+const SNAP_NICE=[{"id":"ep2024may","title":"Curso de Estado Policial · Mayo 2024","year":2024,"month":"Mayo","count":12,"male":9,"female":3,"status":"Verificado","management":"Anterior a la gestión de Martín Galves","short":"Mayo 2024","period":"Mayo 2024 (fechas exactas no informadas)"},{"id":"ep2024jul","title":"Curso de Estado Policial · Julio 2024","year":2024,"month":"Julio","count":38,"male":36,"female":2,"status":"Verificado","management":"Anterior a la gestión de Martín Galves","short":"Julio 2024","period":"Julio 2024 (fechas exactas no informadas)"},{"id":"nice2","title":"NICE Policía · 2ª Edición","year":2024,"month":"Octubre","count":60,"male":47,"female":13,"status":"Totales por sexo informados; sin desglose individual","management":"Sin clasificar","short":"2ª Ed.","period":"09/09/2024 al 04/10/2024"},{"id":"ep2024nov","title":"Curso de Estado Policial · Noviembre 2024","year":2024,"month":"Noviembre","count":44,"male":31,"female":13,"status":"Verificado","management":"Gestión de Martín Galves","short":"Noviembre 2024","period":"Noviembre 2024 (fechas exactas no informadas)"},{"id":"ep2024dic","title":"Curso de Estado Policial · Diciembre 2024","year":2024,"month":"Diciembre","count":46,"male":38,"female":8,"status":"Verificado","management":"Gestión de Martín Galves","short":"Diciembre 2024","period":"Diciembre 2024 (fechas exactas no informadas)"},{"id":"nice3","title":"NICE Policía · 3ª Edición","year":2025,"month":"Enero","count":45,"male":12,"female":33,"status":"Total por sexo informado: 12 hombres y 33 mujeres; género individual confirmado en 9 de 45 registros","management":"Sin clasificar","short":"3ª Ed.","period":"06/01/2025 al 31/01/2025"},{"id":"nice4","title":"NICE Policía · 4ª Edición","year":2025,"month":"Julio","count":200,"male":114,"female":86,"status":"Verificado desde nómina; cargado en Alumnos","management":"Sin clasificar","short":"4ª Ed.","period":"07/07/2025 al 04/08/2025"},{"id":"nice5","title":"NICE Policía · 5ª Edición","year":2025,"month":"Agosto","count":200,"male":108,"female":92,"status":"Verificado desde nómina; cargado en Alumnos","management":"Sin clasificar","short":"5ª Ed.","period":"04/08/2025 al 01/09/2025"},{"id":"nice6","title":"NICE Policía · 6ª Edición","year":2025,"month":"Septiembre","count":200,"male":91,"female":109,"status":"Verificado desde nómina; cargado en Alumnos","management":"Sin clasificar","short":"6ª Ed.","period":"08/09/2025 al 06/10/2025"},{"id":"nice7","title":"NICE Policía · 7ª Edición","year":2025,"month":"Noviembre","count":451,"male":250,"female":201,"status":"Desglose verificado desde PDF rectificado; nómina individual pendiente de conciliación por DNI","management":"Sin clasificar","short":"7ª Ed.","period":"03/11/2025 al 28/11/2025"},{"id":"nice8","title":"NICE Policía · 8ª Edición","year":2026,"month":"Febrero","count":450,"male":203,"female":247,"status":"Verificado desde nómina; cargado en Alumnos","management":"Sin clasificar","short":"8ª Ed.","period":"02/02/2026 al 28/02/2026"},{"id":"nice9","title":"NICE Policía · 9ª Edición","year":2026,"month":"Abril","count":201,"male":105,"female":96,"status":"Verificado desde nómina modificada; cargado en Alumnos","management":"Sin clasificar","short":"9ª Ed.","period":"13/04/2026 al 08/05/2026"},{"id":"nice10","title":"NICE Policía · 10ª Edición","year":2026,"month":"Mayo","count":204,"male":117,"female":87,"status":"Verificado desde Alumnos","management":"Sin clasificar","short":"10ª Ed.","period":"18/05/2026 al 13/06/2026"},{"id":"nice11","title":"NICE Policía · 11ª Edición","year":2026,"month":"Junio","count":200,"male":93,"female":107,"status":"Verificado desde Alumnos","management":"Sin clasificar","short":"11ª Ed.","period":"22/06/2026 al 17/07/2026"},{"id":"nice12","title":"NICE Policía · 12ª Edición","year":2026,"month":"Agosto","count":201,"male":116,"female":85,"status":"Verificado desde Excel aportado","management":"Sin clasificar","short":"12ª Ed.","period":"24/08/2026 al 18/09/2026"}];
+const SNAP_INGRESOS=[{"id":"policia-2025-14","type":"Cadetes Policía","promo":"14ª Prom.","year":2025,"month":"Febrero","period":"Febrero 2025 a diciembre 2025","count":1210,"male":679,"female":531,"status":"Nómina validada","excluded":null},{"id":"bomberos-2025-10","type":"Aspirantes Bomberos","promo":"9ª Prom.","year":2025,"month":"Febrero","period":"Incorporación febrero 2025","count":205,"male":143,"female":62,"status":"Nómina validada","excluded":null},{"id":"policia-2026-15","type":"Cadetes Policía","promo":"15ª Prom.","year":2026,"month":"Febrero","period":"Incorporación febrero 2026","count":1190,"male":672,"female":518,"status":"Nómina completa incluidas bajas","excluded":85},{"id":"bomberos-2026-10","type":"Aspirantes Bomberos","promo":"10ª Prom.","year":2026,"month":"Febrero","period":"Incorporación febrero 2026","count":212,"male":149,"female":63,"status":"Nómina completa incluidas bajas","excluded":15},{"id":"bomberos-2024-8","type":"Aspirantes Bomberos","promo":"8ª Prom.","year":2024,"month":"Pendiente","period":"Pendiente de nómina","count":null,"male":null,"female":null,"status":"Pendiente de documentación","excluded":null}];
+const TYPES=["Cadetes Policía","Aspirantes Bomberos","Servicio Penitenciario"];
+const MONTHS=["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"];
+let nice=SNAP_NICE, ingresos=SNAP_INGRESOS, activeRequests=false;
+const $=id=>document.getElementById(id);
+const esc=v=>String(v??"").replace(/[&<>"']/g,s=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[s]));
+const fmt=v=>v===null||v===undefined||Number.isNaN(v)?"—":Number(v).toLocaleString("es-AR");
+const sums=(rows,k)=>rows.reduce((n,r)=>n+(Number(r[k])||0),0);
+function setStatus(text,kind=""){const s=$("sync");s.className="status "+kind;s.lastElementChild.textContent=text;}
+function n(v){if(v===null||v===undefined||v==="")return null;const raw=typeof v==="number"?v:String(v).replace(/\./g,"").replace(",",".");const out=Number(raw);return Number.isFinite(out)?out:null;}
+function sorted(a){return [...a].sort((x,y)=>x.year-y.year||(MONTHS.indexOf(x.month)-MONTHS.indexOf(y.month)));}
+function fillYears(select,data){const chosen=select.value,years=[...new Set(data.map(x=>x.year))].filter(Number.isFinite).sort((a,b)=>a-b);select.innerHTML='<option value="">Todos</option>'+years.map(y=>'<option value="'+y+'">'+y+'</option>').join("");if(years.includes(Number(chosen)))select.value=chosen;}
+function cards(id,arr){$(id).innerHTML=arr.map(x=>'<div class="card"><b>'+fmt(x[1])+'</b><small>'+esc(x[0])+'</small></div>').join("");}
+function renderNice(){
+ const done=nice.filter(x=>x.count!==null);
+ const year=$("nice-year").value;
+ fillYears($("nice-year"),nice);
+ const list=sorted(nice).filter(x=>!year||String(x.year)===year);
+ cards("nice-cards",[["Cursos registrados",done.length],["Total cursantes",sums(done,"count")],["Masculinos",sums(done,"male")],["Femeninos",sums(done,"female")]]);
+ $("nice-rows").innerHTML=list.map(x=>'<tr><td>'+esc(x.year)+'</td><td>'+esc(x.month)+'</td><td><strong>'+esc(x.short||x.title)+'</strong><div style="color:#777;font-size:12px">'+esc(x.title)+'</div></td><td>'+esc(x.period||"—")+'</td><td class="num">'+fmt(x.male)+'</td><td class="num">'+fmt(x.female)+'</td><td class="num">'+fmt(x.count)+'</td></tr>').join("");
+ const years=[...new Set(done.map(x=>x.year))].sort((a,b)=>a-b);
+ $("nice-years").innerHTML=years.map(y=>{const z=done.filter(x=>x.year===y);return '<tr><td>'+y+'</td><td class="num">'+z.length+'</td><td class="num">'+fmt(sums(z,"male"))+'</td><td class="num">'+fmt(sums(z,"female"))+'</td><td class="num">'+fmt(sums(z,"count"))+'</td></tr>';}).join("");
+}
+function renderIngresos(){
+ const done=ingresos.filter(x=>x.count!==null);
+ const year=$("ingreso-year").value;
+ fillYears($("ingreso-year"),ingresos);
+ const list=sorted(ingresos).filter(x=>!year||String(x.year)===year);
+ cards("ingreso-cards",[["Promociones con datos",done.length],["Personas registradas",sums(done,"count")],["Masculinos informados",sums(done,"male")],["Femeninos informados",sums(done,"female")]]);
+ $("ingreso-rows").innerHTML=list.map(x=>'<tr><td>'+esc(x.year)+'</td><td><strong>'+esc(x.type)+'</strong></td><td>'+esc(x.promo)+(x.count===null?' <span class="pill pending">Pendiente</span>':'')+'</td><td>'+esc(x.period||"—")+'</td><td class="num">'+fmt(x.male)+'</td><td class="num">'+fmt(x.female)+'</td><td class="num">'+fmt(x.excluded)+'</td><td class="num">'+fmt(x.count)+'</td></tr>').join("");
+ $("ingreso-types").innerHTML=TYPES.map(t=>{const z=done.filter(x=>x.type===t);return '<tr><td>'+esc(t)+'</td><td class="num">'+z.length+'</td><td class="num">'+fmt(sums(z,"male"))+'</td><td class="num">'+fmt(sums(z,"female"))+'</td><td class="num">'+fmt(sums(z,"count"))+'</td></tr>';}).join("");
+}
+function readSheet(gid){
+ return new Promise((resolve,reject)=>{
+   const name="__gvis"+gid+"_"+Date.now(),sc=document.createElement("script");
+   let settled=false;const timer=setTimeout(()=>finish(new Error("Sin respuesta de Google Sheets")),12000);
+   function finish(err,data){if(settled)return;settled=true;clearTimeout(timer);delete window[name];sc.remove();err?reject(err):resolve(data);}
+   window[name]=resp=>{if(resp?.status==="error"||!resp?.table)finish(new Error("Acceso denegado o datos inválidos"));else finish(null,resp);};
+   sc.onerror=()=>finish(new Error("No pudo consultarse Google Sheets"));
+   sc.src="https://docs.google.com/spreadsheets/d/"+SHEET+"/gviz/tq?gid="+gid+"&tqx="+encodeURIComponent("out:json;responseHandler="+name)+"&cache="+Date.now();
+   document.head.appendChild(sc);
+ });
+}
+function grid(resp,names){
+ const labels=resp.table.cols.map(x=>String(x.label||"").trim());
+ return (resp.table.rows||[]).map(r=>names.map((k,i)=>{
+   const j=labels.indexOf(k);
+   const c=r.c?.[j>=0?j:i];return c?.v??c?.f??"";
+ }));
+}
+function parseNice(resp){
+ const headers=["ID curso","Curso / edición","Año","Mes","Total","Hombres","Mujeres","Estado de los datos","Gestión","Estado de la nómina","Edición / etiqueta","Período de cursada"];
+ const list=[],errors=[],known=new Set();
+ for(const r of grid(resp,headers)){
+   const id=String(r[0]||"").trim();if(!id)continue;
+   const count=n(r[4]),male=n(r[5]),female=n(r[6]),year=n(r[2]);
+   if(known.has(id)||!Number.isInteger(year)||!Number.isInteger(count)||count<=0||[male,female].some(v=>v!==null&&(!Number.isInteger(v)||v<0))||(male??0)+(female??0)>count||(male!==null&&female!==null&&male+female!==count)){errors.push(id);continue;}
+   known.add(id);list.push({id,title:String(r[1]||id),year,month:String(r[3]||""),count,male,female,status:String(r[7]||""),management:String(r[8]||""),short:String(r[10]||r[3]||id),period:String(r[11]||"")});
+ }
+ if(list.length<15)throw new Error("Consolidado NICE incompleto");
+ return {list,errors};
+}
+function parseIngresos(resp){
+ const names=["ID","Tipo de ingreso","Promoción","Año","Mes","Período","Total","Masculinos","Femeninos","Estado","Observaciones","Ausentes / bajas","Registrados en archivo","Fecha de corte"];
+ const list=[],errors=[],known=new Set();
+ for(const r of grid(resp,names)){
+   const id=String(r[0]||"").trim();if(!id)continue;
+   const type=String(r[1]||""),year=n(r[3]),count=n(r[6]),male=n(r[7]),female=n(r[8]),excluded=n(r[11]);
+   if(known.has(id)||!TYPES.includes(type)||!Number.isInteger(year)||(count!==null&&(!Number.isInteger(count)||count<=0))||[male,female,excluded].some(x=>x!==null&&(!Number.isInteger(x)||x<0))||(count!==null&&(male??0)+(female??0)>count)||(count!==null&&male!==null&&female!==null&&male+female!==count)){errors.push(id);continue;}
+   known.add(id);list.push({id,type,promo:String(r[2]||"Incorporación"),year,month:String(r[4]||""),period:String(r[5]||""),count,male,female,status:String(r[9]||""),excluded});
+ }
+ if(list.length<5)throw new Error("Ingresos incompletos");
+ return {list,errors};
+}
+async function refresh(){
+ if(activeRequests)return;activeRequests=true;setStatus("Consultando Google Sheets");
+ const errors=[];
+ try{const {list,errors:invalid}=parseNice(await readSheet(1702526203));nice=list;errors.push(...invalid.map(x=>"NICE: "+x));}catch(e){errors.push("NICE sin conexión");}
+ try{const {list,errors:invalid}=parseIngresos(await readSheet(1748902602));ingresos=list;errors.push(...invalid.map(x=>"Ingresos: "+x));}catch(e){errors.push("Ingresos sin conexión");}
+ renderNice();renderIngresos();
+ setStatus(errors.length?"Mostrando datos de respaldo · "+errors.join("; "):"Sincronizado desde Google Sheets",errors.length?"error":"live");
+ $("data-note").textContent=errors.length?"Algunas fuentes no respondieron. Se conservan los últimos datos de respaldo. No se publican datos personales.":"Datos sincronizados. Para agregar cursos nuevos, completá una fila en las pestañas «Ingresos» o «Distribución por sexo» de Google Sheets. No se publican datos personales.";
+ activeRequests=false;
+}
+document.querySelectorAll(".tab").forEach(btn=>btn.addEventListener("click",()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.toggle("active",x===btn));document.querySelectorAll(".panel").forEach(x=>x.classList.toggle("active",x.id===btn.dataset.tab));}));
+$("nice-year").addEventListener("change",renderNice);
+$("ingreso-year").addEventListener("change",renderIngresos);
+renderNice();renderIngresos();refresh();setInterval(refresh,60000);
+
+</script>
+</body>
+</html>
