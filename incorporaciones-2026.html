@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f4f1fb">
+<title>ISSP | Cadetes de Policía, Bomberos y Servicio Penitenciario</title>
+<style>
+:root{color-scheme:light;--ink:#282639;--muted:#69667b;--border:#e2dced;--main:#7051bb;--paper:#fff;--wash:#f5f2fb}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(150deg,#f5f0fb,#f9fbff);font:15px/1.45 system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink)}
+main,header,footer{max-width:1120px;margin:auto;padding:22px}
+header{padding-top:33px}h1{font-size:clamp(27px,5vw,40px);line-height:1.14;letter-spacing:-.04em;margin:7px 0 11px}
+h2{font-size:23px;margin:0 0 5px;letter-spacing:-.02em}p{margin:0}
+a{color:var(--main);font-weight:650}
+.kicker{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--main);font-weight:800}
+.meta{color:var(--muted);font-size:13px}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin:19px 0}
+.actions a{display:inline-flex;border:1px solid #d5cbe5;background:#fff;border-radius:10px;padding:10px 12px;text-decoration:none;font-size:13px}
+.totals{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:0 0 30px}
+.total{background:var(--paper);border:1px solid var(--border);border-radius:13px;padding:16px}
+.total strong{display:block;font-size:27px;letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+.total small{font-size:12px;color:var(--muted)}
+.category{margin:24px 0 35px}
+.category-heading{display:flex;gap:15px;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-bottom:15px}
+.category-heading .subtitle{color:var(--muted);font-size:13px}
+.entries{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.entry{background:var(--paper);border:1px solid var(--border);border-radius:16px;padding:20px;box-shadow:0 4px 15px rgba(45,25,92,.04)}
+.entry .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.year{font-size:13px;font-weight:750;padding:5px 9px;background:var(--wash);border-radius:7px;color:var(--main)}
+.promo{font-size:24px;letter-spacing:-.025em;font-weight:800;margin:12px 0 13px}
+.nums{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+.num{border-radius:10px;background:#f7f5fb;padding:10px 8px;text-align:center}
+.num strong{display:block;font-size:22px;letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.num small{font-size:11px;color:var(--muted)}
+.num.highlight{background:#eae3fa;color:#4b3383}
+.num.highlight small{color:#5d4b81}
+.mgmt{margin-top:14px;font-size:12px;color:var(--muted)}
+.mgmt span{display:inline-block;background:#edf5ed;color:#2e7544;font-weight:700;border-radius:7px;padding:3px 7px}
+.mgmt span.previous{background:#edf0f7;color:#576789}
+.note{border-top:1px solid var(--border);padding-top:12px;margin-top:12px;font-size:12px;color:var(--muted)}
+.pending{padding:18px;border:1px dashed var(--border);border-radius:12px;color:var(--muted);background:white}
+footer{font-size:12px;color:var(--muted);padding-bottom:45px}
+.status{font-size:12px;color:var(--muted);border-left:3px solid #afa4cb;padding:3px 10px;margin-top:6px}
+@media(max-width:640px){header,main,footer{padding:16px}header{padding-top:27px}.totals{grid-template-columns:repeat(2,minmax(0,1fr))}.entries{grid-template-columns:1fr}.entry{padding:18px}.promo{font-size:23px}h2{font-size:21px}}
+</style>
+</head>
+<body>
+<header>
+<div class="kicker">ISSP · Departamento de Selección e Ingreso</div>
+<h1>Incorporaciones de<br>Cadetes, Bomberos y Penitenciarios</h1>
+<p class="meta">Promociones desde 2024 · Desglose por sexo y gestión</p>
+<div class="actions"><a href="./">Volver al dashboard NICE</a><a href="./dashboard-automatico.html">Ver consolidado completo</a></div>
+</header>
+<main>
+<section aria-label="Resumen general"><div class="totals" id="totals">
+<div class="total"><strong>6</strong><small>Promociones</small></div>
+<div class="total"><strong>3.092</strong><small>Personas registradas</small></div>
+<div class="total"><strong>1.815</strong><small>Masculinos</small></div>
+<div class="total"><strong>1.277</strong><small>Femeninos</small></div>
+</div></section>
+<p id="status" class="status" role="status">Datos de respaldo verificados · Sincronizando con Google Sheets…</p>
+<div id="groups">
+<section class="category" aria-label="Cadetes Policía"><div class="category-heading"><div><h2>Cadetes Policía</h2><p class="subtitle">14.ª y 15.ª promoción · 2025 y 2026</p></div></div><div class="entries">
+<article class="entry"><div class="top"><span class="year">AÑO 2025</span></div><div class="promo">14.ª promoción · Policía</div><div class="nums"><div class="num"><strong>679</strong><small>Masculinos</small></div><div class="num"><strong>531</strong><small>Femeninos</small></div><div class="num highlight"><strong>1.210</strong><small>Total</small></div></div><div class="mgmt"><span>Gestión Martín Galves</span></div></article>
+<article class="entry"><div class="top"><span class="year">AÑO 2026</span></div><div class="promo">15.ª promoción · Policía</div><div class="nums"><div class="num"><strong>672</strong><small>Masculinos</small></div><div class="num"><strong>518</strong><small>Femeninos</small></div><div class="num highlight"><strong>1.190</strong><small>Total</small></div></div><div class="mgmt"><span>Gestión Martín Galves</span></div><div class="note">Incluye 85 registros marcados en rojo (bajas o ausentes).</div></article>
+</div></section>
+</div>
+<p class="meta">Solo se muestran estadísticas. Los datos personales de las nóminas no se publican.</p>
+</main>
+<footer>Fuente: Google Sheets del ISSP, pestaña «Ingresos». La página consulta los datos cada 60 segundos. Cualquier promoción nueva se agrega desde la planilla.</footer>
+<script>
+(function(){
+"use strict";
+const SID="15WzM4V0uXH4QfVmsSQ7fGIxhOF-H7Z1koV40SWrUpuk",GID="1748902602";
+const TYPES=["Cadetes Policía","Aspirantes Bomberos","Servicio Penitenciario"];
+let records=[
+{id:"policia-2025-14",type:"Cadetes Policía",year:2025,promo:"14ª Prom.",male:679,female:531,total:1210,red:null,management:"Gestión de Martín Galves"},
+{id:"policia-2026-15",type:"Cadetes Policía",year:2026,promo:"15ª Prom.",male:672,female:518,total:1190,red:85,management:"Gestión de Martín Galves"},
+{id:"bomberos-2024-8",type:"Aspirantes Bomberos",year:2024,promo:"8ª Prom.",male:106,female:49,total:155,red:null,management:"Gestión anterior"},
+{id:"bomberos-2025-10",type:"Aspirantes Bomberos",year:2025,promo:"9ª Prom.",male:143,female:62,total:205,red:null,management:"Gestión de Martín Galves"},
+{id:"bomberos-2026-10",type:"Aspirantes Bomberos",year:2026,promo:"10ª Prom.",male:149,female:63,total:212,red:15,management:"Gestión de Martín Galves"},
+{id:"penitenciario-2026-1",type:"Servicio Penitenciario",year:2026,promo:"1ª Prom.",male:66,female:54,total:120,red:null,management:"Gestión de Martín Galves"}
+];
+function el(id){return document.getElementById(id)}
+function esc(v){return String(v==null?"":v).replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]))}
+function fmt(v){return v==null?"—":Number(v).toLocaleString("es-AR")}
+function sum(rs,k){return rs.reduce((n,r)=>n+(Number(r[k])||0),0)}
+function show(){
+const total=records.filter(r=>r.total!==null);
+el("totals").innerHTML=[["Promociones",total.length],["Personas registradas",sum(total,"total")],["Masculinos",sum(total,"male")],["Femeninos",sum(total,"female")]].map(([title,value])=>'<div class="total"><strong>'+fmt(value)+'</strong><small>'+title+'</small></div>').join("");
+el("groups").innerHTML=TYPES.map(type=>{
+const a=records.filter(r=>r.type===type).sort((x,y)=>x.year-y.year);
+const subt=a.length?a.map(r=>r.year).join(" · "):"Sin promociones registradas todavía";
+return '<section class="category"><div class="category-heading"><div><h2>'+esc(type)+'</h2><p class="subtitle">'+esc(subt)+'</p></div></div><div class="entries">'+
+(a.length?a.map(r=>'<article class="entry"><div class="top"><span class="year">AÑO '+esc(r.year)+'</span></div><div class="promo">'+esc(r.promo.replace("Prom.","promoción"))+' · '+esc(type==="Cadetes Policía"?"Policía":type==="Aspirantes Bomberos"?"Bomberos":"Penitenciario")+'</div><div class="nums"><div class="num"><strong>'+fmt(r.male)+'</strong><small>Masculinos</small></div><div class="num"><strong>'+fmt(r.female)+'</strong><small>Femeninos</small></div><div class="num highlight"><strong>'+fmt(r.total)+'</strong><small>Total</small></div></div><div class="mgmt"><span class="'+(/anterior/i.test(r.management)?"previous":"")+'">'+esc(r.management)+'</span></div>'+(r.red?'<p class="note">Incluye '+fmt(r.red)+' registros en rojo (bajas o ausentes), ya contabilizados en el total.</p>':'')+'</article>').join(""):'<div class="pending">Pendiente de incorporar la primera promoción.</div>')+
+'</div></section>'
+}).join("");
+}
+const int=v=>{if(v==null||v==="")return null;const n=Number(typeof v==="string"?v.replace(/\./g,"").replace(",","."):v);return Number.isFinite(n)?n:NaN};
+function parse(resp){
+const head=(resp.table.cols||[]).map(c=>String(c.label||"").trim());
+const keys=["ID","Tipo de ingreso","Promoción","Año","Mes","Período","Total","Masculinos","Femeninos","Estado","Observaciones","Ausentes / bajas","Registrados en archivo","Fecha de corte","Gestión"];
+const seen=new Set(),list=[];
+for(const row of (resp.table.rows||[])){
+const get=i=>{const j=head.indexOf(keys[i]);const c=row.c?.[j<0?i:j];return c?.v??c?.f??""};
+const id=String(get(0)||"").trim();if(!id)continue;
+const type=String(get(1)||"").trim(),year=int(get(3)),total=int(get(6)),male=int(get(7)),female=int(get(8)),red=int(get(11));
+if(seen.has(id)||!TYPES.includes(type)||!Number.isInteger(year)||total===null||!Number.isInteger(total)||total<1||!Number.isInteger(male)||!Number.isInteger(female)||male<0||female<0||male+female!==total||(red!=null&&(!Number.isInteger(red)||red<0||red>total)))continue;
+list.push({id,type,year,promo:String(get(2)||""),male,female,total,red,management:String(get(14)||"No informado")});seen.add(id);
+}
+if(!list.some(r=>r.id==="policia-2025-14")||!list.some(r=>r.id==="policia-2026-15"))throw Error("Falta una promoción de Policía en el origen.");
+return list;
+}
+function fetchRows(){
+return new Promise((resolve,reject)=>{
+const name="isspCards"+Date.now(),sc=document.createElement("script");let ended=false;
+const timer=setTimeout(()=>finish(new Error("Tiempo de espera agotado")),12000);
+function finish(err,value){if(ended)return;ended=true;clearTimeout(timer);delete window[name];sc.remove();err?reject(err):resolve(value)}
+window[name]=r=>{try{if(r?.status==="error"||!r?.table)throw Error("Respuesta inválida");finish(null,parse(r))}catch(e){finish(e)}};
+sc.onerror=()=>finish(new Error("Sin conexión"));
+sc.src="https://docs.google.com/spreadsheets/d/"+SID+"/gviz/tq?gid="+GID+"&tqx="+encodeURIComponent("out:json;responseHandler:"+name)+"&t="+Date.now();
+document.head.appendChild(sc);
+});
+}
+let busy=false;
+async function sync(){if(busy)return;busy=true;try{records=await fetchRows();show();el("status").textContent="Datos sincronizados desde Google Sheets."}catch(e){el("status").textContent="Se muestran los datos de respaldo verificados. "+e.message}finally{busy=false}}
+show();sync();setInterval(sync,60000);
+})();
+</script>
+</body>
+</html>
