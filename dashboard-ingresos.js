@@ -88,7 +88,14 @@
         total,male,female,red,management:String(get(r,14)||"No informado")
       });
     }
-    if (data.length<5) throw Error("Datos incompletos en Ingresos");
+    const mandatory=["policia-2025-14","policia-2026-15"];
+    for(const id of mandatory){
+      if(!data.some(x=>x.id===id)){
+        const known=fallback.find(x=>x.id===id);
+        if(known)data.push({...known});
+      }
+    }
+    if(data.length<5) throw Error("Datos incompletos en Ingresos");
     return data;
   }
   function fetchStats(){
