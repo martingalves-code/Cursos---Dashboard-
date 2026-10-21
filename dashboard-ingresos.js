@@ -14,7 +14,8 @@
     {id:"bomberos-2025-10",type:"Aspirantes Bomberos",promo:"9ª Prom.",year:2025,month:"Febrero",period:"Incorporación febrero 2025",total:205,male:143,female:62,red:null,management:"Gestión de Martín Galves"},
     {id:"policia-2026-15",type:"Cadetes Policía",promo:"15ª Prom.",year:2026,month:"Febrero",period:"Incorporación febrero 2026",total:1190,male:672,female:518,red:85,management:"Gestión de Martín Galves"},
     {id:"bomberos-2026-10",type:"Aspirantes Bomberos",promo:"10ª Prom.",year:2026,month:"Febrero",period:"Incorporación febrero 2026",total:212,male:149,female:63,red:15,management:"Gestión de Martín Galves"},
-    {id:"bomberos-2024-8",type:"Aspirantes Bomberos",promo:"8ª Prom.",year:2024,month:"Sin informar",period:"Año 2024 (fecha exacta no informada)",total:155,male:106,female:49,red:null,management:"Gestión anterior"}
+    {id:"bomberos-2024-8",type:"Aspirantes Bomberos",promo:"8ª Prom.",year:2024,month:"Sin informar",period:"Año 2024 (fecha exacta no informada)",total:155,male:106,female:49,red:null,management:"Gestión anterior"},
+    {id:"penitenciario-2026-1",type:"Servicio Penitenciario",promo:"1ª Prom.",year:2026,month:"Agosto",period:"Ingreso 31/08/2026",total:120,male:66,female:54,red:null,management:"Gestión de Martín Galves"}
   ];
   let incomes = fallback.slice();
   const esc = value => String(value == null ? "" : value)
@@ -88,7 +89,7 @@
         total,male,female,red,management:String(get(r,14)||"No informado")
       });
     }
-    const mandatory=["policia-2025-14","policia-2026-15"];
+    const mandatory=fallback.map(x=>x.id);
     for(const id of mandatory){
       if(!data.some(x=>x.id===id)){
         const known=fallback.find(x=>x.id===id);
